@@ -81,8 +81,8 @@ function processResponsiveDeclarations (
 ) {
   function getSelector (prop, selector) {
     if (prop === 'media') return escape(selector)
-    if (prop === 'hover') return `${ escape(selector) }:hover`
-    if (prop === 'focus') return `${ escape(selector) }:focus`
+    if (prop === 'hover') return `hover\\:${ escape(selector) }:hover`
+    if (prop === 'focus') return `focus\\:${ escape(selector) }:focus`
     return null
   }
 

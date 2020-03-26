@@ -95,7 +95,7 @@ Output:
   .sm\:flex {
     display: flex;
   }
-  .sm\:flex:hover {
+  .sm\:hover\:flex:hover {
     display: flex;
   }
 }
@@ -106,7 +106,7 @@ Output:
   .md\:flex {
     display: flex;
   }
-  .md\:flex:hover {
+  .md\:hover\:flex:hover {
     display: flex;
   }
 }
@@ -117,10 +117,10 @@ Output:
   .lg\:flex {
     display: flex;
   }
-  .lg\:flex:hover {
+  .lg\:hover\:flex:hover {
     display: flex;
   }
-  .lg\:flex:focus {
+  .lg\:focus\:flex:focus {
     display: flex;
   }
 }
@@ -131,10 +131,10 @@ Output:
   .xl\:flex {
     display: flex;
   }
-  .xl\:flex:hover {
+  .xl\:hover\:flex:hover {
     display: flex;
   }
-  .xl\:flex:focus {
+  .xl\:focus\:flex:focus {
     display: flex;
   }
 }
