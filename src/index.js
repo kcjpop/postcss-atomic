@@ -57,7 +57,7 @@ module.exports = postcss.plugin('postcss-atomic', () => {
   AT_RULES.set('text', text)
   AT_RULES.set('width', width)
 
-  return root => {
+  return (root, result) => {
     // Collect custom media queries
     let customMediaQueries = getMediaQueries(root)
 
@@ -65,7 +65,7 @@ module.exports = postcss.plugin('postcss-atomic', () => {
     root.walkAtRules(rule => {
       let fn = AT_RULES.get(rule.name)
       if (typeof fn === 'function') {
-        fn(root, rule, customMediaQueries)
+        fn(root, rule, customMediaQueries, result)
         // We don't want to keep our custom syntaxes in the output CSS file
         rule.remove()
       }

@@ -33,7 +33,7 @@ function generateMediaBlocks (
 }
 
 function processBlockRule (decls) {
-  return (root, rule, mediaQueries) => {
+  return (root, rule, mediaQueries, result) => {
     // If arule has no specific definition, then print out all rules by default
     // (no responsive variants generated though)
     if (rule.nodes == null) {
@@ -66,6 +66,8 @@ function processBlockRule (decls) {
           selectorWithoutDot,
           decls.get(selector)
         )
+      } else {
+        arule.warn(result, `No definition for ${ selector }`)
       }
     })
   }

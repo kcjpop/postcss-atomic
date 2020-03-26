@@ -2,8 +2,12 @@ const postcss = require('postcss')
 
 const plugin = require('./')
 
+async function compile (input) {
+  return postcss([plugin()]).process(input, { from: undefined })
+}
+
 async function run (input, output, { debug = false } = {}) {
-  let result = await postcss([plugin()]).process(input, { from: undefined })
+  let result = await compile(input)
 
   if (debug) expect(result.css.trim()).toEqual(output.trim())
   else {
@@ -62,6 +66,18 @@ describe('@directives', () => {
 
       await run(src, expected)
     })
+
+  it('should show warning if cherry-picking an undefined rules', async () => {
+    let src = newSheet`
+@display {
+  .non-existing-rule {}
+}`
+    let result = await compile(src)
+    expect(
+      result.warnings()
+        .find(w => w.text.match(/No definition for \.non-existing-rule/))
+    ).toBeDefined()
+  })
 
   it('should generate "media" variants for rules', async () => {
     let src = newSheet`
