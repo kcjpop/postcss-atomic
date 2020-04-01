@@ -1,6 +1,10 @@
 const postcss = require('postcss')
+const { default: clear } = require('tailwindcss/lib/plugins/clear')
+const { default: boxSizing } = require('tailwindcss/lib/plugins/boxSizing')
+const { default: alignContent } = require('tailwindcss/lib/plugins/alignContent')
+const { default: alignItems } = require('tailwindcss/lib/plugins/alignItems')
+const { default: alignSelf } = require('tailwindcss/lib/plugins/alignSelf')
 
-const boxSizing = require('./rules/boxSizing')
 const color = require('./rules/color')
 const border = require('./rules/border')
 const container = require('./rules/container')
@@ -17,6 +21,7 @@ const position = require('./rules/position')
 const rounded = require('./rules/rounded')
 const text = require('./rules/text')
 const width = require('./rules/width')
+const { extractTailwindDefinition } = require('./helpers')
 
 /**
  * Extract @custom-media definitions within the stylesheet
@@ -39,14 +44,18 @@ function getMediaQueries (root) {
 
 module.exports = postcss.plugin('postcss-atomic', () => {
   let AT_RULES = new Map()
-  AT_RULES.set('box-sizing', boxSizing)
+  AT_RULES.set('align-content', extractTailwindDefinition(alignContent))
+  AT_RULES.set('align-items', extractTailwindDefinition(alignItems))
+  AT_RULES.set('align-self', extractTailwindDefinition(alignSelf))
+  AT_RULES.set('box-sizing', extractTailwindDefinition(boxSizing))
   AT_RULES.set('border', border)
   AT_RULES.set('color', color)
+  AT_RULES.set('clear', extractTailwindDefinition(clear))
   AT_RULES.set('container', container)
   AT_RULES.set('margin', margin)
   AT_RULES.set('display', display)
   AT_RULES.set('font', font)
-  AT_RULES.set('flex', flex)
+  AT_RULES.set('flex', extractTailwindDefinition(alignContent, alignItems, alignSelf))
   AT_RULES.set('float', float)
   AT_RULES.set('height', height)
   AT_RULES.set('letter-spacing', letterSpacing)

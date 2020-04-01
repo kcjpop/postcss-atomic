@@ -100,7 +100,21 @@ function processResponsiveDeclarations (
   })
 }
 
+function extractTailwindDefinition (...plugins) {
+  let allDefs = plugins.flatMap(plugin => {
+    let defs = null
+    plugin()({ addUtilities: ds => (defs = ds), variants: () => {} })
+
+    return Object.entries(defs)
+  })
+
+  console.log(allDefs)
+
+  return processBlockRule(new Map(allDefs))
+}
+
 module.exports = {
+  extractTailwindDefinition,
   processBlockRule,
   splitAndTrim,
   newBlock,

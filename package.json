@@ -17,8 +17,9 @@
   "license": "MIT",
   "repository": "kcjpop/postcss-atomic",
   "dependencies": {
+    "css.escape": "1.5.1",
     "postcss": "7.0.27",
-    "css.escape": "1.5.1"
+    "tailwindcss": "1.2.0"
   },
   "devDependencies": {
     "@logux/eslint-config": "36.1.1",
