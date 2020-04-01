@@ -4,6 +4,8 @@
 
 [PostCSS]: https://github.com/postcss/postcss
 
+🚨🚨🚨 WORK IN PROGRESS. FEEDBACK/ IDEAS ARE WELCOME. 🚨🚨🚨
+
 ## Why?
 
 Atomic CSS frameworks are great for prototyping, but it's hassle to customise them. It gets even worse when we want to cut down the file size, which involves different tools and techniques. When time comes, those concerns usually get in developers' workflow.
@@ -33,7 +35,7 @@ Input:
 @custom-media --lg (min-width: 1024px);
 @custom-media --xl (min-width: 1280px);
 
-/* Each at-rule is set of related utility classes */
+/* Each at-rule/ directive is a set of related utility classes */
 @container;
 
 /* Generate all classes of "float" directive */
