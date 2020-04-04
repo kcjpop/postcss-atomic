@@ -1,0 +1,3 @@
+coverage_clover: coverage/clover.xml
+json_path: coverage/coverage-final.json
+service_name: circle-ci

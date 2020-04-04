@@ -1,0 +1,33 @@
+version: 2.1
+orbs:
+  node: circleci/node@2.0.1
+jobs:
+  test-latest:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - node/install:
+          node-version: latest
+      - run: node --version
+      - run: npm ci
+      - run: npm run test:ci
+      - run: npm run test:coverage
+      - run:
+          name: Send coverage report
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+            fi
+workflows:
+  tests:
+    jobs:
+      - test-latest
+      - node/test:
+          version: '13.9'
+      - node/test:
+          version: '12.16'
+      - node/test:
+          version: '10.19'
+      - node/test:
+          version: '8.17'
