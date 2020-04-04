@@ -108,8 +108,6 @@ function extractTailwindDefinition (...plugins) {
     return Object.entries(defs)
   })
 
-  console.log(allDefs)
-
   return processBlockRule(new Map(allDefs))
 }
 
