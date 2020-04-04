@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "postcss -o build.css styles.css && cat build.css",
-    "test": "jest && eslint ."
+    "test": "jest --verbose && eslint ."
   },
   "main": "src/index.js",
   "author": "An Cao <kcj.pop.com@gmail.com>",
