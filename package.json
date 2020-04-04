@@ -1,7 +1,7 @@
 {
   "name": "postcss-atomic",
-  "version": "0.1.0",
-  "description": "PostCSS plugin Generate atomic CSS classes with Tailwind vocabulary",
+  "version": "0.0.0",
+  "description": "PostCSS plugin to generate atomic CSS classes, largely use Tailwind vocabulary",
   "keywords": [
     "postcss",
     "css",
