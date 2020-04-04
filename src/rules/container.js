@@ -1,4 +1,4 @@
-const { splitAndTrim, newBlock } = require('../helpers')
+const { splitAndTrim, newRule } = require('../helpers')
 
 const SELECTOR = '.container'
 const DEFAULT_CONTAINER_RULES = new Map([
@@ -9,13 +9,13 @@ const DEFAULT_CONTAINER_RULES = new Map([
 ])
 
 module.exports = function container (root, rule, mediaQueries) {
-  root.append(newBlock(SELECTOR, { width: '100%' }, rule.source))
+  root.append(newRule(SELECTOR, { width: '100%' }, rule.source))
   let queries = rule.params.length !== 0 ? splitAndTrim(rule.params) : null
 
   mediaQueries.forEach(block => {
     if (queries === null || queries.includes(block.prefix)) {
       block.append(
-        newBlock(
+        newRule(
           SELECTOR, DEFAULT_CONTAINER_RULES.get(block.prefix), rule.source
         )
       )

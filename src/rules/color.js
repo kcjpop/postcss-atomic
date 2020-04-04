@@ -1,5 +1,5 @@
 const {
-  newBlock,
+  newRule,
   splitAndTrim,
   processResponsiveDeclarations
 } = require('../helpers')
@@ -27,7 +27,7 @@ module.exports = function color (root, rule, mediaQueries) {
         let propValue = `var(${ value })`
 
         root.append(
-          newBlock(`.${ selector }`, { [propName]: propValue }, arule.source)
+          newRule(`.${ selector }`, { [propName]: propValue }, arule.source)
         )
 
         if (arule.nodes && arule.nodes.length > 0) {

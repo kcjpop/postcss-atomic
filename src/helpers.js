@@ -5,13 +5,28 @@ function splitAndTrim (s, sep = /\s+/) {
   return s.split(sep).map(i => i.trim())
 }
 
-function newBlock (selector, props, source) {
+function getSelectorForPseudoClass (prop, selectorWithoutDot) {
+  if (prop === 'media') return escape(selectorWithoutDot)
+  if (prop === 'hover') return `hover\\:${ escape(selectorWithoutDot) }:hover`
+  if (prop === 'focus') return `focus\\:${ escape(selectorWithoutDot) }:focus`
+  return null
+}
+
+/**
+ * Helper to make a new CSS rule
+ *
+ * @param {string} selector Selector name, with dot
+ * @param {object} props CSS properties of this rule
+ * @param {object} source Source node to generate this rule
+ */
+function newRule (selector, props, source) {
   let rule = postcss.rule({ selector })
+  rule.source = source
+
   for (let prop in props) {
     rule.append(postcss.decl({ prop, value: props[prop] }))
   }
-  // Keep sourcemap
-  rule.source = source
+
   return rule
 }
 
@@ -27,9 +42,17 @@ function generateMediaBlocks (
     block =>
       (value === 'all' || values.includes(block.prefix)) &&
       block.append(
-        newBlock(`.${ block.prefix }\\:${ selector }`, props, source)
+        newRule(`.${ block.prefix }\\:${ selector }`, props, source)
       )
   )
+}
+
+function appendRootAllClasses (root, node, directiveRules) {
+  for (let [selector, props] of directiveRules.entries()) {
+    root.append(
+      newRule(`.${ escape(selector.substr(1)) }`, props, node.source)
+    )
+  }
 }
 
 function processBlockRule (decls) {
@@ -37,14 +60,35 @@ function processBlockRule (decls) {
     // If arule has no specific definition, then print out all rules by default
     // (no responsive variants generated though)
     if (rule.nodes == null) {
-      for (let [selector, props] of decls.entries()) {
-        root.append(
-          newBlock(`.${ escape(selector.substr(1)) }`, props, rule.source)
-        )
-      }
+      appendRootAllClasses(root, rule, decls)
       return
-      // TODO: Should we support `@display md lg;` to generate all rules and
-      // specified responsive variants?
+    }
+
+    // Check if this block contains rules => cherry picking classes is desired
+    let isCherryPicking = rule.some(i => i.type === 'rule')
+
+    // If users want to generate all pseudo-class variants of this block
+    if (!isCherryPicking) {
+      // Generate all definition of this block to root
+      appendRootAllClasses(root, rule, decls)
+
+      // Generate responsive classes
+      rule.walkDecls(decl => {
+        // To avoid this case @float { .float-right { media: all; } }
+        if (decl.parent !== rule) return
+
+        for (let [selector, props] of decls.entries()) {
+          let selectorWithoutDot = selector.substr(1)
+
+          generateMediaBlocks(
+            decl.value,
+            mediaQueries,
+            getSelectorForPseudoClass(decl.prop, selectorWithoutDot),
+            props,
+            decl.source
+          )
+        }
+      })
     }
 
     // Otherwise, select only defined rules
@@ -54,7 +98,7 @@ function processBlockRule (decls) {
       if (decls.has(selector)) {
         let selectorWithoutDot = selector.substr(1)
 
-        root.append(newBlock(
+        root.append(newRule(
           `.${ escape(selectorWithoutDot) }`,
           decls.get(selector),
           arule.source
@@ -79,15 +123,8 @@ function processResponsiveDeclarations (
   selectorWithoutDot,
   props
 ) {
-  function getSelector (prop, selector) {
-    if (prop === 'media') return escape(selector)
-    if (prop === 'hover') return `hover\\:${ escape(selector) }:hover`
-    if (prop === 'focus') return `focus\\:${ escape(selector) }:focus`
-    return null
-  }
-
   rule.walkDecls(decl => {
-    let selector = getSelector(decl.prop, selectorWithoutDot)
+    let selector = getSelectorForPseudoClass(decl.prop, selectorWithoutDot)
     if (selector !== null) {
       generateMediaBlocks(
         decl.value,
@@ -100,6 +137,12 @@ function processResponsiveDeclarations (
   })
 }
 
+/**
+ * Take a Tailwind plugin and extract its CSS definitions. Only work with static
+ * plugins.
+ *
+ * @param  {...any} plugins Spreads of Tailwind plugins
+ */
 function extractTailwindDefinition (...plugins) {
   let allDefs = plugins.flatMap(plugin => {
     let defs = null
@@ -112,9 +155,9 @@ function extractTailwindDefinition (...plugins) {
 }
 
 module.exports = {
-  extractTailwindDefinition,
-  processBlockRule,
+  newRule,
   splitAndTrim,
-  newBlock,
+  processBlockRule,
+  extractTailwindDefinition,
   processResponsiveDeclarations
 }

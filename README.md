@@ -8,21 +8,22 @@
 
 ## Why?
 
-Atomic CSS frameworks are great for prototyping, but it's hassle to customise them. It gets even worse when we want to cut down the file size, which involves different tools and techniques. When time comes, those concerns usually get in developers' workflow.
+Atomic CSS frameworks are great for prototyping, but it's hassle to customise. It gets even worse when we want to cut down the bundle size, which involves different tools and techniques. When time comes, those concerns usually get  the way of development.
 
-This plugin aims to solve those problems by providing some extra rules to automatically generate atomic CSS classes. It is:
+This plugin aims to solve those problems by providing some extra CSS rules to automatically generate atomic classes. It is:
 
-- Minimal by default. Developers only include what they need.
-- Flexible. Developers can chose to generate a whole set of classes, or only ones they need.
-- Customisable to an atomic level. It is posible to have a hover class for one particular colour, while creating a focus class for another one.
-- Just CSS. No need to involve JavaScript into the workflow (kinda).
+- Minimal by default: Developers only include what they need.
+- Flexible: Developers can chose to generate a whole set of classes, or only ones they need.
+- Customisable to an atomic level: It is posible to have a hover class for one particular colour, while creating a focus class for another one.
+- Mostly CSS: No need to involve JavaScript into the workflow (kinda a).
 - Source-map friendly.
 
 ## Example
 
-Input:
+Input `styles.css`:
 
 ```css
+/* Define a colour palette */
 :root {
   --white-100: #eff0f3;
   --white-200: #fffffe;
@@ -30,36 +31,45 @@ Input:
   --black-200: #2a2a2a;
 }
 
+/* And some breakpoints */
 @custom-media --sm (min-width: 640px);
 @custom-media --md (min-width: 768px);
 @custom-media --lg (min-width: 1024px);
 @custom-media --xl (min-width: 1280px);
 
-/* Each at-rule/ directive is a set of related utility classes */
+/* Each directive is a set of related utility rules */
 @container;
 
-/* Generate all classes of "float" directive */
+/* Generate all rules of "float" directive */
 @float;
 
-/* Or select which classes will be created */
+/* Or select which rules will be created */
 @display {
-  /* Base rule without responsive, hover, or focus variations */
+  /* A rule without responsive or pseudo-class variants */
   .inline-flex {}
 
   .flex {
-    /* Generate rules for those breakpoints */
+    /* Generate rules for these breakpoints */
     media: sm md lg xl;
     /* or using "all", same as above */
     hover: all;
-    /* or specifying interested breakpoints */
+    /* or specifying only interested breakpoints */
     focus: lg xl;
   }
+}
+
+/* Or generate pseudo-class variants for all classes of a directives */
+@visibility {
+  media: sm md lg xl;
+  hover: all;
+  focus: lg xl;
 }
 ```
 
 Output:
 
 ```css
+/* Define a colour palette */
 :root {
   --white-100: #eff0f3;
   --white-200: #fffffe;
@@ -67,11 +77,19 @@ Output:
   --black-200: #2a2a2a;
 }
 
+/* And some breakpoints */
 @custom-media --sm (min-width: 640px);
 @custom-media --md (min-width: 768px);
 @custom-media --lg (min-width: 1024px);
 @custom-media --xl (min-width: 1280px);
 
+/* Each directive is a set of related utility rules */
+
+/* Generate all rules of "float" directive */
+
+/* Or select which rules will be created */
+
+/* Or generate pseudo-class variants for all classes of a directives */
 .container {
   width: 100%;
 }
@@ -84,11 +102,22 @@ Output:
 .float-none {
   float: none;
 }
+.clearfix\:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 .inline-flex {
   display: inline-flex;
 }
 .flex {
   display: flex;
+}
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
 }
 @media (--sm) {
   .container {
@@ -100,6 +129,18 @@ Output:
   .sm\:hover\:flex:hover {
     display: flex;
   }
+  .sm\:visible {
+    visibility: visible;
+  }
+  .sm\:invisible {
+    visibility: hidden;
+  }
+  .sm\:hover\:visible:hover {
+    visibility: visible;
+  }
+  .sm\:hover\:invisible:hover {
+    visibility: hidden;
+  }
 }
 @media (--md) {
   .container {
@@ -110,6 +151,18 @@ Output:
   }
   .md\:hover\:flex:hover {
     display: flex;
+  }
+  .md\:visible {
+    visibility: visible;
+  }
+  .md\:invisible {
+    visibility: hidden;
+  }
+  .md\:hover\:visible:hover {
+    visibility: visible;
+  }
+  .md\:hover\:invisible:hover {
+    visibility: hidden;
   }
 }
 @media (--lg) {
@@ -125,6 +178,24 @@ Output:
   .lg\:focus\:flex:focus {
     display: flex;
   }
+  .lg\:visible {
+    visibility: visible;
+  }
+  .lg\:invisible {
+    visibility: hidden;
+  }
+  .lg\:hover\:visible:hover {
+    visibility: visible;
+  }
+  .lg\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+  .lg\:focus\:visible:focus {
+    visibility: visible;
+  }
+  .lg\:focus\:invisible:focus {
+    visibility: hidden;
+  }
 }
 @media (--xl) {
   .container {
@@ -139,7 +210,26 @@ Output:
   .xl\:focus\:flex:focus {
     display: flex;
   }
+  .xl\:visible {
+    visibility: visible;
+  }
+  .xl\:invisible {
+    visibility: hidden;
+  }
+  .xl\:hover\:visible:hover {
+    visibility: visible;
+  }
+  .xl\:hover\:invisible:hover {
+    visibility: hidden;
+  }
+  .xl\:focus\:visible:focus {
+    visibility: visible;
+  }
+  .xl\:focus\:invisible:focus {
+    visibility: hidden;
+  }
 }
+/*# sourceMappingURL=styles.css.map */
 ```
 
 ## Usage
@@ -179,8 +269,61 @@ Then in your CSS file, define:
 
 ## Todos
 
-- [ ] Implement more at-rules
+- [ ] Implement more directives
+  - [ ] backgroundAttachment
+  - [ ] backgroundColor
+  - [ ] backgroundPosition
+  - [ ] backgroundSize
+  - [ ] borderColor
+  - [ ] borderRadius
+  - [ ] borderWidth
+  - [ ] boxShadow
+  - [ ] cursor
+  - [ ] fill
+  - [ ] flex
+  - [ ] flexGrow
+  - [ ] flexShrink
+  - [ ] fontFamily
+  - [ ] fontSize
+  - [ ] fontWeight
+  - [ ] gap
+  - [ ] gridColumn
+  - [ ] gridColumnEnd
+  - [ ] gridColumnStart
+  - [ ] gridRow
+  - [ ] gridRowEnd
+  - [ ] gridRowStart
+  - [ ] gridTemplateColumns
+  - [ ] gridTemplateRows
+  - [ ] height
+  - [ ] inset
+  - [ ] letterSpacing
+  - [ ] lineHeight
+  - [ ] listStyleType
+  - [ ] margin
+  - [ ] maxHeight
+  - [ ] maxWidth
+  - [ ] minHeight
+  - [ ] minWidth
+  - [ ] objectPosition
+  - [ ] opacity
+  - [ ] order
+  - [ ] padding
+  - [ ] placeholderColor
+  - [ ] rotate
+  - [ ] scale
+  - [ ] skew
+  - [ ] stroke
+  - [ ] strokeWidth
+  - [ ] textColor
+  - [ ] transformOrigin
+  - [ ] transitionDuration
+  - [ ] transitionProperty
+  - [ ] transitionTimingFunction
+  - [ ] translate
+  - [ ] width
+  - [ ] wordBreak
+  - [ ] zIndex
 - [ ] Support `!important`
-- [ ] Discuss: How to differentiate between colour and other variables?
 - [ ] Discuss: How to handle comments?
 - [ ] Discuss: Should the usage of this plugin be wrapped in `@atomic {}` for example?

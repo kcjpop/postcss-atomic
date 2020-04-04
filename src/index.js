@@ -25,7 +25,7 @@ module.exports = postcss.plugin('postcss-atomic', () => {
   let directives = new Map(rules)
 
   return (root, result) => {
-    // Collect custom media queries
+    // Collect custom media queries. They're used to generate responsive rules.
     let customMediaQueries = getMediaQueries(root)
 
     // Process atomic blocks
@@ -38,8 +38,9 @@ module.exports = postcss.plugin('postcss-atomic', () => {
       }
     })
 
+    // Generate responsive classes
     for (let block of customMediaQueries.values()) {
-      // Only print out this breakpoint if it has some definitions
+      // Only print out this breakpoint if it has definitions
       block.nodes != null && root.append(block)
     }
   }
