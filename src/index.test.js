@@ -87,6 +87,34 @@ describe('@directives', () => {
     await run(src, expected)
   })
 
+  it('should generate support "all" pseudo classes', async () => {
+    let src = newSheet`
+@visibility {
+  .visible {
+    active: sm;
+    disabled: sm;
+    first-child: sm;
+    first-of-type: sm;
+    focus: sm;
+    hover: sm;
+  }
+};`
+
+    let expected = newSheet`
+.visible { visibility: visible; }
+
+@media (--sm) {
+  .sm\\:active\\:visible:active { visibility: visible; }
+  .sm\\:disabled\\:visible:disabled { visibility: visible; }
+  .sm\\:first-child\\:visible:first-child { visibility: visible; }
+  .sm\\:first-of-type\\:visible:first-of-type { visibility: visible; }
+  .sm\\:focus\\:visible:focus { visibility: visible; }
+  .sm\\:hover\\:visible:hover { visibility: visible; }
+};`
+
+    await run(src, expected)
+  })
+
   it('should generate only specified rules',
     async () => {
       let src = newSheet`
@@ -135,7 +163,7 @@ describe('@directives', () => {
     await run(src, expected)
   })
 
-  it('should show warning if cherry-picking an undefined rules', async () => {
+  it('should warn if cherry-picking an undefined rules', async () => {
     let src = newSheet`
 @display {
   .non-existing-rule {}
@@ -146,4 +174,6 @@ describe('@directives', () => {
         .find(w => w.text.match(/No definition for \.non-existing-rule/))
     ).toBeDefined()
   })
+
+  it.todo('should warn if specifying an unsupported pseudo-class')
 })

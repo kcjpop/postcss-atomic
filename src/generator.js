@@ -1,14 +1,64 @@
 const postcss = require('postcss')
 const escape = require('css.escape')
 
+const PSEUDOS = new Set([
+  'active',
+  'any-link',
+  'blank',
+  'checked',
+  'current',
+  'default',
+  'defined',
+  'disabled',
+  'drop',
+  'empty',
+  'enabled',
+  'first',
+  'first-child',
+  'first-of-type',
+  'fullscreen',
+  'future',
+  'focus',
+  'focus-visible',
+  'focus-within',
+  'host',
+  'hover',
+  'indeterminate',
+  'in-range',
+  'invalid',
+  'last-child',
+  'last-of-type',
+  'left',
+  'link',
+  'local-link',
+  'only-child',
+  'only-of-type',
+  'optional',
+  'out-of-range',
+  'past',
+  'placeholder-shown',
+  'read-only',
+  'read-write',
+  'required',
+  'right',
+  'root',
+  'scope',
+  'target',
+  'target-within',
+  'user-invalid',
+  'valid',
+  'visited'
+])
+
 function splitAndTrim (s, sep = /\s+/) {
   return s.split(sep).map(i => i.trim())
 }
 
 function getSelectorForPseudoClass (prop, selectorWithoutDot) {
   if (prop === 'media') return escape(selectorWithoutDot)
-  if (prop === 'hover') return `hover\\:${ escape(selectorWithoutDot) }:hover`
-  if (prop === 'focus') return `focus\\:${ escape(selectorWithoutDot) }:focus`
+  if (PSEUDOS.has(prop)) {
+    return `${ prop }\\:${ escape(selectorWithoutDot) }:${ prop }`
+  }
   return null
 }
 
@@ -79,11 +129,19 @@ function processBlockRule (decls) {
 
         for (let [selector, props] of decls.entries()) {
           let selectorWithoutDot = selector.substr(1)
+          let pseudoSelector = getSelectorForPseudoClass(
+            decl.prop,
+            selectorWithoutDot
+          )
+
+          if (pseudoSelector == null) {
+            decl.warn(result, `Pseudo ${ decl.prop } is not supported.`)
+          }
 
           generateMediaBlocks(
             decl.value,
             mediaQueries,
-            getSelectorForPseudoClass(decl.prop, selectorWithoutDot),
+            pseudoSelector,
             props,
             decl.source
           )

@@ -15,6 +15,7 @@ This plugin aims to solve those problems by providing some extra CSS rules to au
 - Minimal by default: Developers only include what they need.
 - Flexible: Developers can chose to generate a whole set of classes, or only ones they need.
 - Customisable to an atomic level: It is posible to have a hover class for one particular colour, while creating a focus class for another one.
+- Supporting all no-parameter pseudo-classes.
 - Mostly CSS: No need to involve JavaScript into the workflow (kinda a).
 - Source-map friendly.
 
