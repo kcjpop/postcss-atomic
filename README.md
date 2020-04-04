@@ -1,5 +1,7 @@
 ## PostCSS Atomic
 
+![CircleCI](https://img.shields.io/circleci/build/github/kcjpop/postcss-atomic/master?style=flat-square) ![Coveralls github branch](https://img.shields.io/coveralls/github/kcjpop/postcss-atomic/master?style=flat-square)
+
 [PostCSS] plugin to generate atomic CSS classes using Tailwind vocabulary.
 
 [PostCSS]: https://github.com/postcss/postcss
