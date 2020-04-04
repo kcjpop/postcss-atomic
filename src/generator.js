@@ -1,4 +1,5 @@
 const postcss = require('postcss')
+const flatMap = require('lodash.flatmap')
 const escape = require('css.escape')
 
 const PSEUDOS = new Set([
@@ -202,7 +203,7 @@ function processResponsiveDeclarations (
  * @param  {...any} plugins Spreads of Tailwind plugins
  */
 function extractTailwindDefinition (...plugins) {
-  let allDefs = plugins.flatMap(plugin => {
+  let allDefs = flatMap(plugins, plugin => {
     let defs = null
     plugin()({ addUtilities: ds => (defs = ds), variants: () => {} })
 

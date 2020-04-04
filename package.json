@@ -20,6 +20,7 @@
   "repository": "kcjpop/postcss-atomic",
   "dependencies": {
     "css.escape": "1.5.1",
+    "lodash.flatmap": "4.5.0",
     "postcss": "7.0.27",
     "tailwindcss": "1.2.0"
   },
