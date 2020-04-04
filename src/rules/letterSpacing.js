@@ -1,4 +1,4 @@
-const { processBlockRule } = require('../helpers')
+const { processBlockRule } = require('../generator')
 
 module.exports = processBlockRule(
   new Map([

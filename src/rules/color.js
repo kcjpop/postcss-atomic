@@ -2,7 +2,7 @@ const {
   newRule,
   splitAndTrim,
   processResponsiveDeclarations
-} = require('../helpers')
+} = require('../generator')
 
 module.exports = function color (root, rule, mediaQueries) {
   let colors = splitAndTrim(rule.params, /,\s+/g)

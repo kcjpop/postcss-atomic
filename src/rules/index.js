@@ -36,7 +36,7 @@ const { default: whitespace } = require('tailwindcss/lib/plugins/whitespace')
 const { default: wordBreak } = require('tailwindcss/lib/plugins/wordBreak')
 /* eslint-enable */
 
-const { extractTailwindDefinition } = require('../helpers')
+const { extractTailwindDefinition } = require('../generator')
 const border = require('./border')
 const color = require('./color')
 const container = require('./container')

@@ -1,4 +1,4 @@
-const { splitAndTrim, newRule } = require('../helpers')
+const { splitAndTrim, newRule } = require('../generator')
 
 const SELECTOR = '.container'
 const DEFAULT_CONTAINER_RULES = new Map([
