@@ -163,6 +163,37 @@ describe('@directives', () => {
     await run(src, expected)
   })
 
+  it('should generate rules in order of their directives', async () => {
+    let src = newSheet`
+/* Float should be here */
+@float {
+  .float-left { }
+  .float-right { }
+};
+
+/* Visibility should be here */
+@visibility;`
+
+    let expected = newSheet`
+/* Float should be here */
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+};
+
+/* Visibility should be here */
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
+}`
+
+    await run(src, expected)
+  })
+
   it('should warn if cherry-picking an undefined rules', async () => {
     let src = newSheet`
 @display {

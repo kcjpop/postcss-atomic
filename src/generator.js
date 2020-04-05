@@ -100,7 +100,8 @@ function generateMediaBlocks (
 
 function appendRootAllClasses (root, node, directiveRules) {
   for (let [selector, props] of directiveRules.entries()) {
-    root.append(
+    root.insertBefore(
+      node,
       newRule(`.${ escape(selector.substr(1)) }`, props, node.source)
     )
   }
@@ -157,11 +158,14 @@ function processBlockRule (decls) {
       if (decls.has(selector)) {
         let selectorWithoutDot = selector.substr(1)
 
-        root.append(newRule(
-          `.${ escape(selectorWithoutDot) }`,
-          decls.get(selector),
-          arule.source
-        ))
+        root.insertBefore(
+          rule,
+          newRule(
+            `.${ escape(selectorWithoutDot) }`,
+            decls.get(selector),
+            arule.source
+          )
+        )
 
         processResponsiveDeclarations(
           mediaQueries,
