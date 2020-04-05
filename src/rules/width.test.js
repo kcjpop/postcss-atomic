@@ -5,25 +5,24 @@ describe('@width', () => {
     let src = newSheet`@width;`
 
     let expected = newSheet`
-.container { width: 100%; }
 .w-0 { width: 0; }
-.w-1 { width: calc(1 * var(--step)); }
-.w-2 { width: calc(2 * var(--step)); }
-.w-3 { width: calc(3 * var(--step)); }
-.w-4 { width: calc(4 * var(--step)); }
-.w-5 { width: calc(5 * var(--step)); }
-.w-6 { width: calc(6 * var(--step)); }
-.w-8 { width: calc(8 * var(--step)); }
-.w-10 { width: calc(10 * var(--step)); }
-.w-12 { width: calc(12 * var(--step)); }
-.w-16 { width: calc(16 * var(--step)); }
-.w-20 { width: calc(20 * var(--step)); }
-.w-24 { width: calc(24 * var(--step)); }
-.w-32 { width: calc(32 * var(--step)); }
-.w-40 { width: calc(40 * var(--step)); }
-.w-48 { width: calc(48 * var(--step)); }
-.w-56 { width: calc(56 * var(--step)); }
-.w-64 { width: calc(64 * var(--step)); }
+.w-1 { width: calc(1 * var(--scale)); }
+.w-2 { width: calc(2 * var(--scale)); }
+.w-3 { width: calc(3 * var(--scale)); }
+.w-4 { width: calc(4 * var(--scale)); }
+.w-5 { width: calc(5 * var(--scale)); }
+.w-6 { width: calc(6 * var(--scale)); }
+.w-8 { width: calc(8 * var(--scale)); }
+.w-10 { width: calc(10 * var(--scale)); }
+.w-12 { width: calc(12 * var(--scale)); }
+.w-16 { width: calc(16 * var(--scale)); }
+.w-20 { width: calc(20 * var(--scale)); }
+.w-24 { width: calc(24 * var(--scale)); }
+.w-32 { width: calc(32 * var(--scale)); }
+.w-40 { width: calc(40 * var(--scale)); }
+.w-48 { width: calc(48 * var(--scale)); }
+.w-56 { width: calc(56 * var(--scale)); }
+.w-64 { width: calc(64 * var(--scale)); }
 .w-auto { width: auto; }
 .w-px { width: 1px; }
 .w-1\\/2 { width: 50%; }
