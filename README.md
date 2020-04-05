@@ -26,8 +26,10 @@ This plugin aims to solve those problems by providing some extra CSS rules to au
 Input `styles.css`:
 
 ```css
-/* Define a colour palette */
 :root {
+  /* Scale is used in width and height rules */
+  --scale: 8px;
+  /* Define a colour palette */
   --white-100: #eff0f3;
   --white-200: #fffffe;
   --black-100: #0d0d0d;
@@ -72,8 +74,10 @@ Input `styles.css`:
 Output:
 
 ```css
-/* Define a colour palette */
 :root {
+  /* Scale is used in width and height rules */
+  --scale: 8px;
+  /* Define a colour palette */
   --white-100: #eff0f3;
   --white-200: #fffffe;
   --black-100: #0d0d0d;

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 const { default: alignContent } = require('tailwindcss/lib/plugins/alignContent')
 const { default: alignItems } = require('tailwindcss/lib/plugins/alignItems')
 const { default: alignSelf } = require('tailwindcss/lib/plugins/alignSelf')
@@ -34,7 +33,6 @@ const { default: verticalAlign } = require('tailwindcss/lib/plugins/verticalAlig
 const { default: visibility } = require('tailwindcss/lib/plugins/visibility')
 const { default: whitespace } = require('tailwindcss/lib/plugins/whitespace')
 const { default: wordBreak } = require('tailwindcss/lib/plugins/wordBreak')
-/* eslint-enable */
 
 const { extractTailwindDefinition } = require('../generator')
 const border = require('./border')
@@ -47,21 +45,19 @@ const container = require('./container')
 // const padding = require('./padding')
 // const rounded = require('./rounded')
 // const text = require('./text')
-// const width = require('./width')
+const width = require('./width')
 
 module.exports = [
   ['align', extractTailwindDefinition(alignContent, alignItems, alignSelf)],
   ['appearance', extractTailwindDefinition(appearance)],
+  ['background', extractTailwindDefinition(backgroundAttachment, backgroundRepeat)],
   ['border', border],
+  ['border', extractTailwindDefinition(borderCollapse, borderStyle)],
   ['box-sizing', extractTailwindDefinition(boxSizing)],
   ['clear', extractTailwindDefinition(clear)],
   ['color', color],
   ['container', container],
-  [
-    'background',
-    extractTailwindDefinition(backgroundAttachment, backgroundRepeat)
-  ],
-  ['border', extractTailwindDefinition(borderCollapse, borderStyle)],
+  ['display', extractTailwindDefinition(display)],
   ['display', extractTailwindDefinition(display)],
   ['flex', extractTailwindDefinition(flexDirection, flexWrap)],
   ['float', extractTailwindDefinition(float)],
@@ -82,6 +78,6 @@ module.exports = [
   ['vertical-align', extractTailwindDefinition(verticalAlign)],
   ['visibility', extractTailwindDefinition(visibility)],
   ['whitespace', extractTailwindDefinition(whitespace)],
-  ['wordBreak', extractTailwindDefinition(wordBreak)],
-  ['display', extractTailwindDefinition(display)]
+  ['width', width],
+  ['wordBreak', extractTailwindDefinition(wordBreak)]
 ]
