@@ -1,3 +1,6 @@
 {
-  "extends": "eslint-config-postcss"
+  "extends": "eslint-config-postcss",
+  "rules": {
+    "max-len": "off"
+  }
 }
