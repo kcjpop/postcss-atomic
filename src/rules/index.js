@@ -40,7 +40,7 @@ const color = require('./color')
 const container = require('./container')
 // const font = require('./font')
 // const height = require('./height')
-// const letterSpacing = require('./letterSpacing')
+const letterSpacing = require('./letterSpacing')
 // const margin = require('./margin')
 // const padding = require('./padding')
 const rounded = require('./rounded')
@@ -56,6 +56,7 @@ module.exports = [
   ['clear', extractTailwindDefinition(clear)],
   ['color', color],
   ['container', container],
+  ['letter-spacing', letterSpacing],
   ['display', extractTailwindDefinition(display)],
   ['display', extractTailwindDefinition(display)],
   ['flex', extractTailwindDefinition(flexDirection, flexWrap)],

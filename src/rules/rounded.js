@@ -20,7 +20,7 @@ const variants = [
   ['-br', value => ({ 'border-bottom-left-radius': value })]
 ]
 
-const options = [
+const base = [
   { suffix: '-none', value: '0' },
   { suffix: '-sm', value: '0.125rem' },
   { suffix: '', value: '0.25rem' },
@@ -31,8 +31,8 @@ const options = [
 
 module.exports = processBlockRule(
   new Map([
-    ...options.map(o => [`.rounded${ o.suffix }`, { 'border-radius': o.value }]),
-    ...flatMap(options, o =>
+    ...base.map(o => [`.rounded${ o.suffix }`, { 'border-radius': o.value }]),
+    ...flatMap(base, o =>
       variants.map(([prefix, fn]) => [
         `.rounded${ prefix }${ o.suffix }`, fn(o.value)
       ])
