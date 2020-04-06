@@ -43,8 +43,7 @@ const container = require('./container')
 // const letterSpacing = require('./letterSpacing')
 // const margin = require('./margin')
 // const padding = require('./padding')
-// const rounded = require('./rounded')
-// const text = require('./text')
+const rounded = require('./rounded')
 const width = require('./width')
 
 module.exports = [
@@ -79,5 +78,6 @@ module.exports = [
   ['visibility', extractTailwindDefinition(visibility)],
   ['whitespace', extractTailwindDefinition(whitespace)],
   ['width', width],
-  ['wordBreak', extractTailwindDefinition(wordBreak)]
+  ['rounded', rounded],
+  ['word-break', extractTailwindDefinition(wordBreak)]
 ]

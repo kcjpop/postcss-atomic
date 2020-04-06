@@ -1,7 +1,7 @@
 const { newSheet, run } = require('../testHelpers')
 
 describe('@width', () => {
-  it('should generate all width rules', async () => {
+  it('should generate all rules', async () => {
     let src = newSheet`@width;`
 
     let expected = newSheet`
