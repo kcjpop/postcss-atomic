@@ -29,6 +29,7 @@ Input `styles.css`:
 :root {
   /* Scaling factors */
   --width-scale: 8px;
+  --margin-scale: 0.25rem;
   --padding-scale: 0.25rem;
   /* Define a colour palette */
   --white-100: #eff0f3;
@@ -283,7 +284,6 @@ Then in your CSS file, define:
   - [ ] backgroundPosition
   - [ ] backgroundSize
   - [ ] borderColor
-  - [ ] borderRadius
   - [ ] borderWidth
   - [ ] boxShadow
   - [ ] cursor
@@ -305,10 +305,8 @@ Then in your CSS file, define:
   - [ ] gridTemplateRows
   - [ ] height
   - [ ] inset
-  - [ ] letterSpacing
   - [ ] lineHeight
   - [ ] listStyleType
-  - [ ] margin
   - [ ] maxHeight
   - [ ] maxWidth
   - [ ] minHeight
@@ -316,7 +314,6 @@ Then in your CSS file, define:
   - [ ] objectPosition
   - [ ] opacity
   - [ ] order
-  - [ ] padding
   - [ ] placeholderColor
   - [ ] rotate
   - [ ] scale
@@ -333,5 +330,5 @@ Then in your CSS file, define:
   - [ ] wordBreak
   - [ ] zIndex
 - [ ] Support `!important`
-- [ ] Discuss: How to handle comments?
+- [ ] Optimisation: Pre-calculate `calc()` expressions
 - [ ] Discuss: Should the usage of this plugin be wrapped in `@atomic {}` for example?

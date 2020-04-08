@@ -24,7 +24,7 @@ const base = [
   { suffix: 'y', fn: y }
 ]
 
-const paddingScale = '--padding-scale'
+const scale = '--padding-scale'
 
 module.exports = processBlockRule(
   new Map([
@@ -36,7 +36,7 @@ module.exports = processBlockRule(
         if (i === 'px') return [ruleName, fn('1px')]
         if (i === 0) return [ruleName, fn('0')]
 
-        return [ruleName, fn(`calc(${ i } * var(${ paddingScale }))`)]
+        return [ruleName, fn(`calc(${ i } * var(${ scale }))`)]
       })
     })
   ])

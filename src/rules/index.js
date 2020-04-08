@@ -41,7 +41,7 @@ const container = require('./container')
 // const font = require('./font')
 // const height = require('./height')
 const letterSpacing = require('./letterSpacing')
-// const margin = require('./margin')
+const margin = require('./margin')
 const padding = require('./padding')
 const rounded = require('./rounded')
 const width = require('./width')
@@ -65,6 +65,7 @@ module.exports = [
   ['justify', extractTailwindDefinition(justifyContent)],
   ['letter-spacing', letterSpacing],
   ['list', extractTailwindDefinition(listStylePosition)],
+  ['margin', margin],
   ['object-fit', extractTailwindDefinition(objectFit)],
   ['outline', extractTailwindDefinition(outline)],
   ['overflow', extractTailwindDefinition(overflow)],
