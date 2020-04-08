@@ -1,9 +1,10 @@
 const { processBlockRule } = require('../generator')
 
 const steppers = [1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 56, 64]
+const widthScale = '--width-scale'
 const decls = new Map([
   ['.w-0', { width: '0' }],
-  ...steppers.map(i => [`.w-${ i }`, { width: `calc(${ i } * var(--width-scale))` }]),
+  ...steppers.map(i => [`.w-${ i }`, { width: `calc(${ i } * var(${ widthScale }))` }]),
   ['.w-auto', { width: 'auto' }],
   ['.w-px', { width: '1px' }],
   ['.w-1/2', { width: '50%' }],

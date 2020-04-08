@@ -42,7 +42,7 @@ const container = require('./container')
 // const height = require('./height')
 const letterSpacing = require('./letterSpacing')
 // const margin = require('./margin')
-// const padding = require('./padding')
+const padding = require('./padding')
 const rounded = require('./rounded')
 const width = require('./width')
 
@@ -56,7 +56,6 @@ module.exports = [
   ['clear', extractTailwindDefinition(clear)],
   ['color', color],
   ['container', container],
-  ['letter-spacing', letterSpacing],
   ['display', extractTailwindDefinition(display)],
   ['display', extractTailwindDefinition(display)],
   ['flex', extractTailwindDefinition(flexDirection, flexWrap)],
@@ -64,13 +63,16 @@ module.exports = [
   ['font', extractTailwindDefinition(fontSmoothing, fontStyle)],
   ['grid', extractTailwindDefinition(gridAutoFlow)],
   ['justify', extractTailwindDefinition(justifyContent)],
+  ['letter-spacing', letterSpacing],
   ['list', extractTailwindDefinition(listStylePosition)],
   ['object-fit', extractTailwindDefinition(objectFit)],
   ['outline', extractTailwindDefinition(outline)],
   ['overflow', extractTailwindDefinition(overflow)],
+  ['padding', padding],
   ['pointer', extractTailwindDefinition(pointerEvents)],
   ['position', extractTailwindDefinition(position)],
   ['resize', extractTailwindDefinition(resize)],
+  ['rounded', rounded],
   ['table', extractTailwindDefinition(tableLayout)],
   ['text', extractTailwindDefinition(textAlign, textDecoration, textTransform)],
   ['transform', extractTailwindDefinition(transform)],
@@ -79,6 +81,5 @@ module.exports = [
   ['visibility', extractTailwindDefinition(visibility)],
   ['whitespace', extractTailwindDefinition(whitespace)],
   ['width', width],
-  ['rounded', rounded],
   ['word-break', extractTailwindDefinition(wordBreak)]
 ]

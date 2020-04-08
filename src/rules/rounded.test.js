@@ -1,6 +1,6 @@
 const { newSheet, run } = require('../testHelpers')
 
-describe('@width', () => {
+describe('@rounded', () => {
   it('should generate all rules', async () => {
     let src = newSheet`@rounded;`
 

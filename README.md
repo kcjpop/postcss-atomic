@@ -29,6 +29,7 @@ Input `styles.css`:
 :root {
   /* Scaling factors */
   --width-scale: 8px;
+  --padding-scale: 0.25rem;
   /* Define a colour palette */
   --white-100: #eff0f3;
   --white-200: #fffffe;
