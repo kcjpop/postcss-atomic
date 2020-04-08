@@ -27,8 +27,8 @@ Input `styles.css`:
 
 ```css
 :root {
-  /* Scale is used in width and height rules */
-  --scale: 8px;
+  /* Scaling factors */
+  --width-scale: 8px;
   /* Define a colour palette */
   --white-100: #eff0f3;
   --white-200: #fffffe;
