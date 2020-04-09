@@ -39,7 +39,7 @@ const border = require('./border')
 const color = require('./color')
 const container = require('./container')
 // const font = require('./font')
-// const height = require('./height')
+const height = require('./height')
 const letterSpacing = require('./letterSpacing')
 const margin = require('./margin')
 const padding = require('./padding')
@@ -62,6 +62,7 @@ module.exports = [
   ['float', extractTailwindDefinition(float)],
   ['font', extractTailwindDefinition(fontSmoothing, fontStyle)],
   ['grid', extractTailwindDefinition(gridAutoFlow)],
+  ['height', height],
   ['justify', extractTailwindDefinition(justifyContent)],
   ['letter-spacing', letterSpacing],
   ['list', extractTailwindDefinition(listStylePosition)],

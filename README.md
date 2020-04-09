@@ -28,7 +28,8 @@ Input `styles.css`:
 ```css
 :root {
   /* Scaling factors */
-  --width-scale: 8px;
+  --width-scale: 0.25rem;
+  --height-scale: 0.25rem;
   --margin-scale: 0.25rem;
   --padding-scale: 0.25rem;
   /* Define a colour palette */
@@ -92,7 +93,8 @@ Output:
 ```css
 :root {
   /* Scaling factors */
-  --width-scale: 8px;
+  --width-scale: 0.25rem;
+  --height-scale: 0.25rem;
   --margin-scale: 0.25rem;
   --padding-scale: 0.25rem;
   /* Define a colour palette */
@@ -314,6 +316,10 @@ Then in your CSS file, define:
 
 ```css
 :root {
+  --width-scale: 0.25rem;
+  --height-scale: 0.25rem;
+  --margin-scale: 0.25rem;
+  --padding-scale: 0.25rem;
   /* Colours that you'll use in your design */
   --white-100: #eff0f3;
   --white-200: #fffffe;
@@ -355,7 +361,6 @@ Then in your CSS file, define:
   - [ ] gridRowStart
   - [ ] gridTemplateColumns
   - [ ] gridTemplateRows
-  - [ ] height
   - [ ] inset
   - [ ] lineHeight
   - [ ] listStyleType
