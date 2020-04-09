@@ -1,6 +1,15 @@
 const { newSheet, run } = require('../testHelpers')
 
 describe('@color', () => {
+  it('should generate nothing if children directives are missing', async () => {
+    let src = newSheet`
+@color --white-100, --black-100 {};`
+
+    let expected = newSheet``
+
+    await run(src, expected)
+  })
+
   it('should generate "color" rules', async () => {
     let src = newSheet`
 @color --white-100, --black-100 {
