@@ -26,4 +26,24 @@ describe('@container', () => {
 
       await run(src, expected)
     })
+
+  it('should keep generated .container classes in correct order', async () => {
+    let src = newSheet`
+/* A comment */
+@container;
+
+/* Another comment */`
+
+    let expected = newSheet`
+/* A comment */
+.container { width: 100%; }
+
+/* Another comment */
+@media (--sm) { .container { max-width: 640px; } }
+@media (--md) { .container { max-width: 768px; } }
+@media (--lg) { .container { max-width: 1024px; } }
+@media (--xl) { .container { max-width: 1280px; } }`
+
+    await run(src, expected)
+  })
 })

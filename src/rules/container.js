@@ -9,7 +9,7 @@ const DEFAULT_CONTAINER_RULES = new Map([
 ])
 
 module.exports = function container (root, rule, mediaQueries) {
-  root.append(newRule(SELECTOR, { width: '100%' }, rule.source))
+  root.insertAfter(rule, newRule(SELECTOR, { width: '100%' }, rule.source))
   let queries = rule.params.length !== 0 ? splitAndTrim(rule.params) : null
 
   mediaQueries.forEach(block => {
