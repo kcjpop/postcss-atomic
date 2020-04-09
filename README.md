@@ -71,14 +71,30 @@ Input `styles.css`:
   hover: all;
   focus: lg xl;
 }
+
+/* Pick only the color you need */
+@color --white-100, --black-100 {
+  /* Generate text color rules */
+  @text;
+
+  /* And here are for border-color rules */
+  @border {
+    media: sm;
+    first-child: md;
+    hover: lg;
+    active: xl;
+  };
+}
 ```
 
 Output:
 
 ```css
 :root {
-  /* Scale is used in width and height rules */
-  --scale: 8px;
+  /* Scaling factors */
+  --width-scale: 8px;
+  --margin-scale: 0.25rem;
+  --padding-scale: 0.25rem;
   /* Define a colour palette */
   --white-100: #eff0f3;
   --white-200: #fffffe;
@@ -93,15 +109,11 @@ Output:
 @custom-media --xl (min-width: 1280px);
 
 /* Each directive is a set of related utility rules */
-
-/* Generate all rules of "float" directive */
-
-/* Or select which rules will be created */
-
-/* Or generate pseudo-class variants for all classes of a directives */
 .container {
   width: 100%;
 }
+
+/* Generate all rules of "float" directive */
 .float-right {
   float: right;
 }
@@ -116,17 +128,35 @@ Output:
   display: table;
   clear: both;
 }
+
+/* Or select which rules will be created */
 .inline-flex {
   display: inline-flex;
 }
 .flex {
   display: flex;
 }
+
+/* Or generate pseudo-class variants for all classes of a directives */
 .visible {
   visibility: visible;
 }
 .invisible {
   visibility: hidden;
+}
+
+/* Pick only the color you need */
+.text-white-100 {
+  color: var(--white-100);
+}
+.border-white-100 {
+  border-color: var(--white-100);
+}
+.text-black-100 {
+  color: var(--black-100);
+}
+.border-black-100 {
+  border-color: var(--black-100);
 }
 @media (--sm) {
   .container {
@@ -150,6 +180,12 @@ Output:
   .sm\:hover\:invisible:hover {
     visibility: hidden;
   }
+  .sm\:border-white-100 {
+    border-color: var(--white-100);
+  }
+  .sm\:border-black-100 {
+    border-color: var(--black-100);
+  }
 }
 @media (--md) {
   .container {
@@ -172,6 +208,12 @@ Output:
   }
   .md\:hover\:invisible:hover {
     visibility: hidden;
+  }
+  .md\:first-child\:border-white-100:first-child {
+    border-color: var(--white-100);
+  }
+  .md\:first-child\:border-black-100:first-child {
+    border-color: var(--black-100);
   }
 }
 @media (--lg) {
@@ -205,6 +247,12 @@ Output:
   .lg\:focus\:invisible:focus {
     visibility: hidden;
   }
+  .lg\:hover\:border-white-100:hover {
+    border-color: var(--white-100);
+  }
+  .lg\:hover\:border-black-100:hover {
+    border-color: var(--black-100);
+  }
 }
 @media (--xl) {
   .container {
@@ -236,6 +284,12 @@ Output:
   }
   .xl\:focus\:invisible:focus {
     visibility: hidden;
+  }
+  .xl\:active\:border-white-100:active {
+    border-color: var(--white-100);
+  }
+  .xl\:active\:border-black-100:active {
+    border-color: var(--black-100);
   }
 }
 /*# sourceMappingURL=styles.css.map */
@@ -280,10 +334,8 @@ Then in your CSS file, define:
 
 - [ ] Implement more directives
   - [ ] backgroundAttachment
-  - [ ] backgroundColor
   - [ ] backgroundPosition
   - [ ] backgroundSize
-  - [ ] borderColor
   - [ ] borderWidth
   - [ ] boxShadow
   - [ ] cursor
@@ -320,7 +372,6 @@ Then in your CSS file, define:
   - [ ] skew
   - [ ] stroke
   - [ ] strokeWidth
-  - [ ] textColor
   - [ ] transformOrigin
   - [ ] transitionDuration
   - [ ] transitionProperty

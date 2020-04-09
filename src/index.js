@@ -29,12 +29,14 @@ module.exports = postcss.plugin('postcss-atomic', () => {
     let customMediaQueries = getMediaQueries(root)
 
     // Process atomic blocks
-    root.walkAtRules(rule => {
-      let fn = directives.get(rule.name)
+    root.each(node => {
+      if (node.type !== 'atrule') return
+
+      let fn = directives.get(node.name)
       if (typeof fn === 'function') {
-        fn(root, rule, customMediaQueries, result)
+        fn(root, node, customMediaQueries, result)
         // We don't want to keep our custom syntaxes in the output CSS file
-        rule.remove()
+        node.remove()
       }
     })
 

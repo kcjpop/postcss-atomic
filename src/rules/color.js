@@ -7,19 +7,19 @@ const {
 module.exports = function color (root, rule, mediaQueries) {
   let colors = splitAndTrim(rule.params, /,\s+/g)
 
-  colors.forEach(value => {
-    function getSelectorAndPropName (ruleName, colorName) {
-      if (ruleName === 'text') return [`text-${ colorName }`, 'color']
-      if (ruleName === 'border') {
-        return [`border-${ colorName }`, 'border-color']
-      }
-      if (ruleName === 'bg') {
-        return [`bg-${ colorName }`, 'background-color']
-      }
-
-      return []
+  function getSelectorAndPropName (ruleName, colorName) {
+    if (ruleName === 'text') return [`text-${ colorName }`, 'color']
+    if (ruleName === 'border') {
+      return [`border-${ colorName }`, 'border-color']
+    }
+    if (ruleName === 'bg') {
+      return [`bg-${ colorName }`, 'background-color']
     }
 
+    return []
+  }
+
+  colors.forEach(value => {
     let colorName = value.substr(2)
     rule.walkAtRules(arule => {
       let [selector, propName] = getSelectorAndPropName(arule.name, colorName)
