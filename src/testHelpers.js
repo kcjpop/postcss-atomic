@@ -1,4 +1,5 @@
 /* global expect */
+/* istanbul ignore file */
 const postcss = require('postcss')
 
 const plugin = require('./')

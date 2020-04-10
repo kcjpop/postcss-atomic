@@ -10,6 +10,21 @@ describe('@color', () => {
     await run(src, expected)
   })
 
+  it('should generate nothing if specifying an unsupported directives', async () => {
+    let src = newSheet`
+@color --white-100, --black-100 {
+  @text;
+
+  @nothing;
+}`
+
+    let expected = newSheet`
+.text-white-100 { color: var(--white-100); }
+.text-black-100 { color: var(--black-100); }`
+
+    await run(src, expected)
+  })
+
   it('should generate "color" rules', async () => {
     let src = newSheet`
 @color --white-100, --black-100 {
