@@ -10,8 +10,6 @@ const { default: display } = require('tailwindcss/lib/plugins/display')
 const { default: flexDirection } = require('tailwindcss/lib/plugins/flexDirection')
 const { default: flexWrap } = require('tailwindcss/lib/plugins/flexWrap')
 const { default: float } = require('tailwindcss/lib/plugins/float')
-const { default: fontSmoothing } = require('tailwindcss/lib/plugins/fontSmoothing')
-const { default: fontStyle } = require('tailwindcss/lib/plugins/fontStyle')
 const { default: gridAutoFlow } = require('tailwindcss/lib/plugins/gridAutoFlow')
 const { default: justifyContent } = require('tailwindcss/lib/plugins/justifyContent')
 const { default: listStylePosition } = require('tailwindcss/lib/plugins/listStylePosition')
@@ -36,7 +34,7 @@ const { extractTailwindDefinition, processBlockRule } = require('../generator')
 const border = require('./border')
 const color = require('./color')
 const container = require('./container')
-// const font = require('./font')
+const font = require('./font')
 const height = require('./height')
 const letterSpacing = require('./letterSpacing')
 const margin = require('./margin')
@@ -61,7 +59,7 @@ module.exports = [
   ['display', processTailwindPlugins(display)],
   ['flex', processTailwindPlugins(flexDirection, flexWrap)],
   ['float', processTailwindPlugins(float)],
-  ['font', processTailwindPlugins(fontSmoothing, fontStyle)],
+  ['font', font],
   ['grid', processTailwindPlugins(gridAutoFlow)],
   ['height', height],
   ['justify', processTailwindPlugins(justifyContent)],
