@@ -9,11 +9,17 @@ module.exports = function color (root, rule, mediaQueries) {
 
   function getSelectorAndPropName (ruleName, colorName) {
     if (ruleName === 'text') return [`text-${ colorName }`, 'color']
+
     if (ruleName === 'border') {
       return [`border-${ colorName }`, 'border-color']
     }
+
     if (ruleName === 'bg') {
       return [`bg-${ colorName }`, 'background-color']
+    }
+
+    if (ruleName === 'placeholder') {
+      return [`placeholder-${ colorName }::placeholder`, 'color']
     }
 
     return []

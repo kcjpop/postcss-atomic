@@ -102,4 +102,38 @@ describe('@color', () => {
 
     await run(src, expected)
   })
+
+  it('should generate pseudo-element classes', async () => {
+    let src = newSheet`
+@color --white-100, --black-100 {
+  @placeholder { media: xl; };
+}
+@color --white-200, --black-200 {
+  @placeholder;
+}`
+
+    let expected = newSheet`
+.placeholder-white-100::placeholder {
+  color: var(--white-100);
+}
+.placeholder-black-100::placeholder {
+  color: var(--black-100);
+}
+.placeholder-white-200::placeholder {
+  color: var(--white-200);
+}
+.placeholder-black-200::placeholder {
+  color: var(--black-200);
+}
+@media (--xl) {
+  .xl\\:placeholder-white-100::placeholder {
+    color: var(--white-100);
+  }
+  .xl\\:placeholder-black-100::placeholder {
+    color: var(--black-100);
+  }
+}`
+
+    await run(src, expected)
+  })
 })

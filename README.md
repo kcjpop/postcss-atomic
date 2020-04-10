@@ -366,8 +366,6 @@ Then in your CSS file, define:
   - [ ] minWidth
   - [ ] objectPosition
   - [ ] opacity
-  - [ ] order
-  - [ ] placeholderColor
   - [ ] rotate
   - [ ] scale
   - [ ] skew

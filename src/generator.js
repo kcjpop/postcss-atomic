@@ -56,10 +56,18 @@ function splitAndTrim (s, sep = /\s+/) {
 }
 
 function getSelectorForPseudoClass (prop, selectorWithoutDot) {
-  if (prop === 'media') return escape(selectorWithoutDot)
+  let [selector, pseudoElement] =
+    selectorWithoutDot.includes('::') ? selectorWithoutDot.split('::') : [selectorWithoutDot]
+
+  let escapedSelector = escape(selector)
+  let result = pseudoElement ? `${ escapedSelector }::${ pseudoElement }` : escapedSelector
+
+  if (prop === 'media') return result
+
   if (PSEUDOS.has(prop)) {
-    return `${ prop }\\:${ escape(selectorWithoutDot) }:${ prop }`
+    return `${ prop }\\:${ result }:${ prop }`
   }
+
   return null
 }
 
