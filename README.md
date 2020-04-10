@@ -348,9 +348,6 @@ Then in your CSS file, define:
   - [ ] boxShadow
   - [ ] cursor
   - [ ] fill
-  - [ ] flex
-  - [ ] flexGrow
-  - [ ] flexShrink
   - [ ] gap
   - [ ] gridColumn
   - [ ] gridColumnEnd

@@ -1,17 +1,11 @@
-const { default: alignContent } = require('tailwindcss/lib/plugins/alignContent')
-const { default: alignItems } = require('tailwindcss/lib/plugins/alignItems')
-const { default: alignSelf } = require('tailwindcss/lib/plugins/alignSelf')
 const { default: appearance } = require('tailwindcss/lib/plugins/appearance')
 const { default: backgroundAttachment } = require('tailwindcss/lib/plugins/backgroundAttachment')
 const { default: backgroundRepeat } = require('tailwindcss/lib/plugins/backgroundRepeat')
 const { default: boxSizing } = require('tailwindcss/lib/plugins/boxSizing')
 const { default: clear } = require('tailwindcss/lib/plugins/clear')
 const { default: display } = require('tailwindcss/lib/plugins/display')
-const { default: flexDirection } = require('tailwindcss/lib/plugins/flexDirection')
-const { default: flexWrap } = require('tailwindcss/lib/plugins/flexWrap')
 const { default: float } = require('tailwindcss/lib/plugins/float')
 const { default: gridAutoFlow } = require('tailwindcss/lib/plugins/gridAutoFlow')
-const { default: justifyContent } = require('tailwindcss/lib/plugins/justifyContent')
 const { default: listStylePosition } = require('tailwindcss/lib/plugins/listStylePosition')
 const { default: objectFit } = require('tailwindcss/lib/plugins/objectFit')
 const { default: outline } = require('tailwindcss/lib/plugins/outline')
@@ -34,6 +28,7 @@ const { extractTailwindDefinition, processBlockRule } = require('../generator')
 const border = require('./border')
 const color = require('./color')
 const container = require('./container')
+const flex = require('./flex')
 const font = require('./font')
 const height = require('./height')
 const letterSpacing = require('./letterSpacing')
@@ -47,7 +42,6 @@ function processTailwindPlugins (...plugins) {
 }
 
 module.exports = [
-  ['align', processTailwindPlugins(alignContent, alignItems, alignSelf)],
   ['appearance', processTailwindPlugins(appearance)],
   ['background', processTailwindPlugins(backgroundAttachment, backgroundRepeat)],
   ['border', border],
@@ -57,12 +51,11 @@ module.exports = [
   ['container', container],
   ['display', processTailwindPlugins(display)],
   ['display', processTailwindPlugins(display)],
-  ['flex', processTailwindPlugins(flexDirection, flexWrap)],
+  ['flex', flex],
   ['float', processTailwindPlugins(float)],
   ['font', font],
   ['grid', processTailwindPlugins(gridAutoFlow)],
   ['height', height],
-  ['justify', processTailwindPlugins(justifyContent)],
   ['letter-spacing', letterSpacing],
   ['list', processTailwindPlugins(listStylePosition)],
   ['margin', margin],
