@@ -4,8 +4,6 @@ const { default: alignSelf } = require('tailwindcss/lib/plugins/alignSelf')
 const { default: appearance } = require('tailwindcss/lib/plugins/appearance')
 const { default: backgroundAttachment } = require('tailwindcss/lib/plugins/backgroundAttachment')
 const { default: backgroundRepeat } = require('tailwindcss/lib/plugins/backgroundRepeat')
-const { default: borderCollapse } = require('tailwindcss/lib/plugins/borderCollapse')
-const { default: borderStyle } = require('tailwindcss/lib/plugins/borderStyle')
 const { default: boxSizing } = require('tailwindcss/lib/plugins/boxSizing')
 const { default: clear } = require('tailwindcss/lib/plugins/clear')
 const { default: display } = require('tailwindcss/lib/plugins/display')
@@ -34,7 +32,7 @@ const { default: visibility } = require('tailwindcss/lib/plugins/visibility')
 const { default: whitespace } = require('tailwindcss/lib/plugins/whitespace')
 const { default: wordBreak } = require('tailwindcss/lib/plugins/wordBreak')
 
-const { extractTailwindDefinition } = require('../generator')
+const { extractTailwindDefinition, processBlockRule } = require('../generator')
 const border = require('./border')
 const color = require('./color')
 const container = require('./container')
@@ -46,42 +44,45 @@ const padding = require('./padding')
 const rounded = require('./rounded')
 const width = require('./width')
 
+function processTailwindPlugins (...plugins) {
+  return processBlockRule(new Map(extractTailwindDefinition(...plugins)))
+}
+
 module.exports = [
-  ['align', extractTailwindDefinition(alignContent, alignItems, alignSelf)],
-  ['appearance', extractTailwindDefinition(appearance)],
-  ['background', extractTailwindDefinition(backgroundAttachment, backgroundRepeat)],
+  ['align', processTailwindPlugins(alignContent, alignItems, alignSelf)],
+  ['appearance', processTailwindPlugins(appearance)],
+  ['background', processTailwindPlugins(backgroundAttachment, backgroundRepeat)],
   ['border', border],
-  ['border', extractTailwindDefinition(borderCollapse, borderStyle)],
-  ['box-sizing', extractTailwindDefinition(boxSizing)],
-  ['clear', extractTailwindDefinition(clear)],
+  ['box-sizing', processTailwindPlugins(boxSizing)],
+  ['clear', processTailwindPlugins(clear)],
   ['color', color],
   ['container', container],
-  ['display', extractTailwindDefinition(display)],
-  ['display', extractTailwindDefinition(display)],
-  ['flex', extractTailwindDefinition(flexDirection, flexWrap)],
-  ['float', extractTailwindDefinition(float)],
-  ['font', extractTailwindDefinition(fontSmoothing, fontStyle)],
-  ['grid', extractTailwindDefinition(gridAutoFlow)],
+  ['display', processTailwindPlugins(display)],
+  ['display', processTailwindPlugins(display)],
+  ['flex', processTailwindPlugins(flexDirection, flexWrap)],
+  ['float', processTailwindPlugins(float)],
+  ['font', processTailwindPlugins(fontSmoothing, fontStyle)],
+  ['grid', processTailwindPlugins(gridAutoFlow)],
   ['height', height],
-  ['justify', extractTailwindDefinition(justifyContent)],
+  ['justify', processTailwindPlugins(justifyContent)],
   ['letter-spacing', letterSpacing],
-  ['list', extractTailwindDefinition(listStylePosition)],
+  ['list', processTailwindPlugins(listStylePosition)],
   ['margin', margin],
-  ['object-fit', extractTailwindDefinition(objectFit)],
-  ['outline', extractTailwindDefinition(outline)],
-  ['overflow', extractTailwindDefinition(overflow)],
+  ['object-fit', processTailwindPlugins(objectFit)],
+  ['outline', processTailwindPlugins(outline)],
+  ['overflow', processTailwindPlugins(overflow)],
   ['padding', padding],
-  ['pointer', extractTailwindDefinition(pointerEvents)],
-  ['position', extractTailwindDefinition(position)],
-  ['resize', extractTailwindDefinition(resize)],
+  ['pointer', processTailwindPlugins(pointerEvents)],
+  ['position', processTailwindPlugins(position)],
+  ['resize', processTailwindPlugins(resize)],
   ['rounded', rounded],
-  ['table', extractTailwindDefinition(tableLayout)],
-  ['text', extractTailwindDefinition(textAlign, textDecoration, textTransform)],
-  ['transform', extractTailwindDefinition(transform)],
-  ['user-select', extractTailwindDefinition(userSelect)],
-  ['vertical-align', extractTailwindDefinition(verticalAlign)],
-  ['visibility', extractTailwindDefinition(visibility)],
-  ['whitespace', extractTailwindDefinition(whitespace)],
+  ['table', processTailwindPlugins(tableLayout)],
+  ['text', processTailwindPlugins(textAlign, textDecoration, textTransform)],
+  ['transform', processTailwindPlugins(transform)],
+  ['user-select', processTailwindPlugins(userSelect)],
+  ['vertical-align', processTailwindPlugins(verticalAlign)],
+  ['visibility', processTailwindPlugins(visibility)],
+  ['whitespace', processTailwindPlugins(whitespace)],
   ['width', width],
-  ['word-break', extractTailwindDefinition(wordBreak)]
+  ['word-break', processTailwindPlugins(wordBreak)]
 ]

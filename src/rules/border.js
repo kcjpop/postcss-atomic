@@ -1,31 +1,36 @@
-const { processBlockRule } = require('../generator')
+const flatMap = require('lodash.flatmap')
+const { default: borderCollapse } = require('tailwindcss/lib/plugins/borderCollapse')
+const { default: borderStyle } = require('tailwindcss/lib/plugins/borderStyle')
 
-module.exports = processBlockRule(
-  new Map([
-    ['.border', { 'border-width': '1px' }],
-    ['.border-0', { 'border-width': '0' }],
-    ['.border-2', { 'border-width': '2px' }],
-    ['.border-4', { 'border-width': '4px' }],
-    ['.border-8', { 'border-width': '8px' }],
-    ['.border-t', { 'border-top-width': '1px' }],
-    ['.border-r', { 'border-right-width': '1px' }],
-    ['.border-b', { 'border-bottom-width': '1px' }],
-    ['.border-l', { 'border-left-width': '1px' }],
-    ['.border-t-0', { 'border-top-width': '0' }],
-    ['.border-r-0', { 'border-right-width': '0' }],
-    ['.border-b-0', { 'border-bottom-width': '0' }],
-    ['.border-l-0', { 'border-left-width': '0' }],
-    ['.border-t-2', { 'border-top-width': '2px' }],
-    ['.border-r-2', { 'border-right-width': '2px' }],
-    ['.border-b-2', { 'border-bottom-width': '2px' }],
-    ['.border-l-2', { 'border-left-width': '2px' }],
-    ['.border-t-4', { 'border-top-width': '4px' }],
-    ['.border-r-4', { 'border-right-width': '4px' }],
-    ['.border-b-4', { 'border-bottom-width': '4px' }],
-    ['.border-l-4', { 'border-left-width': '4px' }],
-    ['.border-t-8', { 'border-top-width': '8px' }],
-    ['.border-r-8', { 'border-right-width': '8px' }],
-    ['.border-b-8', { 'border-bottom-width': '8px' }],
-    ['.border-l-8', { 'border-left-width': '8px' }]
-  ])
-)
+const { processBlockRule, extractTailwindDefinition } = require('../generator')
+
+// .border{-(t|r|b|l)}{-stepper}
+
+const steppers = [0, 2, 4, 8]
+
+const base = [
+  ['', v => ({ 'border-width': v })],
+  ['-t', v => ({ 'border-top-width': v })],
+  ['-r', v => ({ 'border-right-width': v })],
+  ['-b', v => ({ 'border-bottom-width': v })],
+  ['-l', v => ({ 'border-left-width': v })]
+]
+
+const scale = '--border-width-scale'
+
+const decls = new Map([
+  ...flatMap(base, ([suffix, fn]) => {
+    return [
+      [`.border${ suffix }`, fn('1px')],
+      ...steppers.map(i => [
+        `.border${ suffix }-${ i }`,
+        fn(i === 0 ? '0' : `calc(${ i } * var(${ scale }))`)
+      ])
+    ]
+  }),
+  // border-collapse
+  // border-style
+  ...extractTailwindDefinition(borderCollapse, borderStyle)
+])
+
+module.exports = processBlockRule(decls)

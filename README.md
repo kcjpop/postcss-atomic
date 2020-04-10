@@ -32,6 +32,7 @@ Input `styles.css`:
   --height-scale: 0.25rem;
   --margin-scale: 0.25rem;
   --padding-scale: 0.25rem;
+  --border-width-scale: 1px;
   /* Define a colour palette */
   --white-100: #eff0f3;
   --white-200: #fffffe;
@@ -97,6 +98,7 @@ Output:
   --height-scale: 0.25rem;
   --margin-scale: 0.25rem;
   --padding-scale: 0.25rem;
+  --border-width-scale: 1px;
   /* Define a colour palette */
   --white-100: #eff0f3;
   --white-200: #fffffe;
@@ -320,6 +322,7 @@ Then in your CSS file, define:
   --height-scale: 0.25rem;
   --margin-scale: 0.25rem;
   --padding-scale: 0.25rem;
+  --border-width-scale: 1px;
   /* Colours that you'll use in your design */
   --white-100: #eff0f3;
   --white-200: #fffffe;
