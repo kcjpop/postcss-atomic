@@ -373,9 +373,7 @@ Then in your CSS file, define:
   - [ ] transitionProperty
   - [ ] transitionTimingFunction
   - [ ] translate
-  - [ ] width
   - [ ] wordBreak
-  - [ ] zIndex
 - [ ] Support `!important`
 - [ ] Optimisation: Pre-calculate `calc()` expressions
 - [ ] Discuss: Should the usage of this plugin be wrapped in `@atomic {}` for example?

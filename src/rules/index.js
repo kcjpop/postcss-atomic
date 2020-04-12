@@ -37,6 +37,7 @@ const padding = require('./padding')
 const rounded = require('./rounded')
 const container = require('./container')
 const letterSpacing = require('./letterSpacing')
+const zIndex = require('./zIndex')
 
 function processTailwindPlugins (...plugins) {
   return processBlockRule(new Map(extractTailwindDefinition(...plugins)))
@@ -77,5 +78,6 @@ module.exports = [
   ['visibility', processTailwindPlugins(visibility)],
   ['whitespace', processTailwindPlugins(whitespace)],
   ['width', width],
-  ['word-break', processTailwindPlugins(wordBreak)]
+  ['word-break', processTailwindPlugins(wordBreak)],
+  ['z-index', zIndex]
 ]
