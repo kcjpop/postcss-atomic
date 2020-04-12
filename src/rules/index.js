@@ -34,6 +34,7 @@ const border = require('./border')
 const height = require('./height')
 const margin = require('./margin')
 const zIndex = require('./zIndex')
+const opacity = require('./opacity')
 const padding = require('./padding')
 const rounded = require('./rounded')
 const container = require('./container')
@@ -64,6 +65,7 @@ module.exports = [
   ['list', processTailwindPlugins(listStylePosition)],
   ['margin', margin],
   ['object-fit', processTailwindPlugins(objectFit)],
+  ['opacity', opacity],
   ['outline', processTailwindPlugins(outline)],
   ['overflow', processTailwindPlugins(overflow)],
   ['padding', padding],
