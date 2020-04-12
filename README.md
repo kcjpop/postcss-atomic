@@ -355,7 +355,6 @@ Then in your CSS file, define:
   - [ ] gridTemplateColumns
   - [ ] gridTemplateRows
   - [ ] inset
-  - [ ] lineHeight
   - [ ] listStyleType
   - [ ] maxHeight
   - [ ] maxWidth

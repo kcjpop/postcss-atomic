@@ -33,11 +33,12 @@ const width = require('./width')
 const border = require('./border')
 const height = require('./height')
 const margin = require('./margin')
+const zIndex = require('./zIndex')
 const padding = require('./padding')
 const rounded = require('./rounded')
 const container = require('./container')
+const lineHeight = require('./lineHeight')
 const letterSpacing = require('./letterSpacing')
-const zIndex = require('./zIndex')
 
 function processTailwindPlugins (...plugins) {
   return processBlockRule(new Map(extractTailwindDefinition(...plugins)))
@@ -46,8 +47,8 @@ function processTailwindPlugins (...plugins) {
 module.exports = [
   ['appearance', processTailwindPlugins(appearance)],
   ['background', processTailwindPlugins(backgroundAttachment, backgroundRepeat)],
-  ['border', border],
   ['bg', bg],
+  ['border', border],
   ['box-sizing', processTailwindPlugins(boxSizing)],
   ['clear', processTailwindPlugins(clear)],
   ['color', color],
@@ -59,7 +60,7 @@ module.exports = [
   ['font', font],
   ['grid', processTailwindPlugins(gridAutoFlow)],
   ['height', height],
-  ['letter-spacing', letterSpacing],
+  ['leading', lineHeight],
   ['list', processTailwindPlugins(listStylePosition)],
   ['margin', margin],
   ['object-fit', processTailwindPlugins(objectFit)],
@@ -72,6 +73,7 @@ module.exports = [
   ['rounded', rounded],
   ['table', processTailwindPlugins(tableLayout)],
   ['text', processTailwindPlugins(textAlign, textDecoration, textTransform)],
+  ['tracking', letterSpacing],
   ['transform', processTailwindPlugins(transform)],
   ['user-select', processTailwindPlugins(userSelect)],
   ['vertical-align', processTailwindPlugins(verticalAlign)],
