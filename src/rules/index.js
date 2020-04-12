@@ -25,17 +25,18 @@ const { default: whitespace } = require('tailwindcss/lib/plugins/whitespace')
 const { default: wordBreak } = require('tailwindcss/lib/plugins/wordBreak')
 
 const { extractTailwindDefinition, processBlockRule } = require('../generator')
-const border = require('./border')
-const color = require('./color')
-const container = require('./container')
+const bg = require('./bg')
 const flex = require('./flex')
 const font = require('./font')
+const color = require('./color')
+const width = require('./width')
+const border = require('./border')
 const height = require('./height')
-const letterSpacing = require('./letterSpacing')
 const margin = require('./margin')
 const padding = require('./padding')
 const rounded = require('./rounded')
-const width = require('./width')
+const container = require('./container')
+const letterSpacing = require('./letterSpacing')
 
 function processTailwindPlugins (...plugins) {
   return processBlockRule(new Map(extractTailwindDefinition(...plugins)))
@@ -45,6 +46,7 @@ module.exports = [
   ['appearance', processTailwindPlugins(appearance)],
   ['background', processTailwindPlugins(backgroundAttachment, backgroundRepeat)],
   ['border', border],
+  ['bg', bg],
   ['box-sizing', processTailwindPlugins(boxSizing)],
   ['clear', processTailwindPlugins(clear)],
   ['color', color],

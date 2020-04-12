@@ -342,9 +342,6 @@ Then in your CSS file, define:
 ## Todos
 
 - [ ] Implement more directives
-  - [ ] backgroundAttachment
-  - [ ] backgroundPosition
-  - [ ] backgroundSize
   - [ ] boxShadow
   - [ ] cursor
   - [ ] fill
