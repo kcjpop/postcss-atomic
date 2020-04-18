@@ -11,7 +11,6 @@ const { default: objectFit } = require('tailwindcss/lib/plugins/objectFit')
 const { default: outline } = require('tailwindcss/lib/plugins/outline')
 const { default: overflow } = require('tailwindcss/lib/plugins/overflow')
 const { default: pointerEvents } = require('tailwindcss/lib/plugins/pointerEvents')
-const { default: position } = require('tailwindcss/lib/plugins/position')
 const { default: resize } = require('tailwindcss/lib/plugins/resize')
 const { default: tableLayout } = require('tailwindcss/lib/plugins/tableLayout')
 const { default: textAlign } = require('tailwindcss/lib/plugins/textAlign')
@@ -36,6 +35,7 @@ const margin = require('./margin')
 const zIndex = require('./zIndex')
 const opacity = require('./opacity')
 const padding = require('./padding')
+const position = require('./position')
 const rounded = require('./rounded')
 const container = require('./container')
 const lineHeight = require('./lineHeight')
@@ -70,7 +70,7 @@ module.exports = [
   ['overflow', processTailwindPlugins(overflow)],
   ['padding', padding],
   ['pointer', processTailwindPlugins(pointerEvents)],
-  ['position', processTailwindPlugins(position)],
+  ['position', position],
   ['resize', processTailwindPlugins(resize)],
   ['rounded', rounded],
   ['table', processTailwindPlugins(tableLayout)],
