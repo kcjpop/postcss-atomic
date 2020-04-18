@@ -6,7 +6,6 @@ const { default: clear } = require('tailwindcss/lib/plugins/clear')
 const { default: display } = require('tailwindcss/lib/plugins/display')
 const { default: float } = require('tailwindcss/lib/plugins/float')
 const { default: gridAutoFlow } = require('tailwindcss/lib/plugins/gridAutoFlow')
-const { default: listStylePosition } = require('tailwindcss/lib/plugins/listStylePosition')
 const { default: objectFit } = require('tailwindcss/lib/plugins/objectFit')
 const { default: outline } = require('tailwindcss/lib/plugins/outline')
 const { default: overflow } = require('tailwindcss/lib/plugins/overflow')
@@ -27,6 +26,7 @@ const { extractTailwindDefinition, processBlockRule } = require('../generator')
 const bg = require('./bg')
 const flex = require('./flex')
 const font = require('./font')
+const list = require('./list')
 const color = require('./color')
 const width = require('./width')
 const border = require('./border')
@@ -62,7 +62,7 @@ module.exports = [
   ['grid', processTailwindPlugins(gridAutoFlow)],
   ['height', height],
   ['leading', lineHeight],
-  ['list', processTailwindPlugins(listStylePosition)],
+  ['list', list],
   ['margin', margin],
   ['object-fit', processTailwindPlugins(objectFit)],
   ['opacity', opacity],
