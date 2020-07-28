@@ -2,11 +2,11 @@
 
 [![CircleCI](https://img.shields.io/circleci/build/github/kcjpop/postcss-atomic/master?style=flat-square)](https://circleci.com/gh/kcjpop/postcss-atomic) [![Coveralls](https://img.shields.io/coveralls/github/kcjpop/postcss-atomic/master?style=flat-square)](https://coveralls.io/github/kcjpop/postcss-atomic)
 
-[PostCSS] plugin to generate atomic CSS classes using Tailwind vocabulary.
+[PostCSS] plugin to generate atomic CSS classes loosely based on Tailwind vocabulary.
 
 [PostCSS]: https://github.com/postcss/postcss
 
-🚨🚨🚨 WORK IN PROGRESS. FEEDBACK/ IDEAS ARE WELCOME. 🚨🚨🚨
+🚨🚨🚨 WORK IN PROGRESS 🚨🚨🚨
 
 ## Why?
 
@@ -14,11 +14,11 @@ Atomic CSS frameworks are great for prototyping, but it's hassle to customise. I
 
 This plugin aims to solve those problems by providing some extra CSS rules to automatically generate atomic classes. It is:
 
-- Minimal by default: Developers only include what they need.
-- Flexible: Developers can chose to generate a whole set of classes, or only ones they need.
-- Customisable to an atomic level: It is posible to have a hover class for one particular colour, while creating a focus class for another one.
+- **Minimal by default:** Developers only include what they need.
+- **Flexible:** Developers can chose to generate a whole set of classes, or only ones they need.
+- **Customisable to an atomic level:** It is posible to have a hover class for one particular colour, while creating a focus class for another one.
+- **Mostly CSS:** No need to involve JavaScript into the workflow (kinda).
 - Supporting all no-parameter pseudo-classes.
-- Mostly CSS: No need to involve JavaScript into the workflow (kinda a).
 - Source-map friendly.
 
 ## Example
